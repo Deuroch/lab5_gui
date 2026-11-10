@@ -57,3 +57,21 @@ class ListboxApp(tk.Tk):
         if selection:
             item = self.listbox.get(selection[0])
             print(f"Выбран элемент: {item}")
+
+
+class MultiWindowApp(tk.Tk):
+    """Программа с вызовом дополнительных окон (Пов. 8)."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.title("Главное окно")
+        self.geometry("300x150")
+
+        self.btn = tk.Button(self, text="Открыть новое окно", command=self.open_new_window)
+        self.btn.pack(expand=True)
+
+    def open_new_window(self) -> None:
+        new_window = tk.Toplevel(self)
+        new_window.title("Дополнительное окно")
+        new_window.geometry("200x100")
+        tk.Label(new_window, text="Это второе окно!").pack(expand=True)
