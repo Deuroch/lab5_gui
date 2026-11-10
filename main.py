@@ -33,3 +33,27 @@ class SimplePyQtApp(QWidget):
         label = QLabel("Привет, PyQt5!", self)
         layout.addWidget(label)
         self.setLayout(layout)
+
+
+class ListboxApp(tk.Tk):
+    """Приложение со списком Listbox (Ср. 4)."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.title("Список элементов")
+        self.geometry("300x200")
+
+        self.listbox = tk.Listbox(self)
+        self.listbox.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        
+        items = ["Python", "Java", "C++", "JavaScript", "Go"]
+        for item in items:
+            self.listbox.insert(tk.END, item)
+            
+        self.listbox.bind("<<ListboxSelect>>", self.on_select)
+
+    def on_select(self, event: tk.Event) -> None:
+        selection = self.listbox.curselection()
+        if selection:
+            item = self.listbox.get(selection[0])
+            print(f"Выбран элемент: {item}")
