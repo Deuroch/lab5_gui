@@ -19,3 +19,17 @@ class FileDialogApp(tk.Tk):
         file_path = filedialog.askopenfilename()
         if file_path:
             messagebox.showinfo("Результат", f"Выбран файл:\n{file_path}")
+
+
+class SimplePyQtApp(QWidget):
+    """Простейшее окно на PyQt5 (Ср. 10)."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.setWindowTitle("PyQt5 Приложение")
+        self.resize(300, 150)
+        
+        layout = QVBoxLayout()
+        label = QLabel("Привет, PyQt5!", self)
+        layout.addWidget(label)
+        self.setLayout(layout)
